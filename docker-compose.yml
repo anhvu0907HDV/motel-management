@@ -1,0 +1,81 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: postgres:15
+    container_name: motel_db
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    container_name: motel_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  web:
+    image: odoo:17
+    container_name: motel_odoo
+    restart: always
+    depends_on:
+      - db
+      - redis
+
+    ports:
+      - "8069:8069"
+      - "8072:8072"
+
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+
+    volumes:
+      # custom addons
+      - ./custom_addons:/mnt/extra-addons
+
+      # config
+      - ./config:/etc/odoo
+
+      # logs
+      - ./logs:/var/log/odoo
+
+      # filestore persistence
+      - odoo_data:/var/lib/odoo
+
+      # optional source mount
+      # uncomment if using local odoo source
+      # - ./odoo:/usr/lib/python3/dist-packages/odoo
+
+    command: >
+      odoo
+      --config=/etc/odoo/odoo.conf
+      --dev=xml,reload,qweb
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: motel_pgadmin
+    restart: always
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+    ports:
+      - "5050:80"
+
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  odoo_data:

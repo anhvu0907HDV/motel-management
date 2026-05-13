@@ -1,0 +1,34 @@
+```gitignore id="3jlwmj"
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Odoo
+*.log
+*.pid
+
+# PostgreSQL
+postgres_data/
+
+# Docker
+*.env
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Odoo filestore
+odoo_data/
+
+# Temporary
+tmp/
+```
+odoo/
