@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_motel_booking_admin,motel.booking admin,model_motel_booking,motel_security.group_motel_admin,1,1,1,0
+access_motel_booking_receptionist,motel.booking receptionist,model_motel_booking,motel_security.group_motel_receptionist,1,1,1,0
+access_motel_booking_housekeeping,motel.booking housekeeping,model_motel_booking,motel_security.group_motel_housekeeping,1,0,0,0
+access_motel_booking_accountant,motel.booking accountant,model_motel_booking,motel_security.group_motel_accountant,1,0,0,0
+
+access_motel_booking_guest_line_admin,motel.booking.guest.line admin,model_motel_booking_guest_line,motel_security.group_motel_admin,1,1,1,0
+access_motel_booking_guest_line_receptionist,motel.booking.guest.line receptionist,model_motel_booking_guest_line,motel_security.group_motel_receptionist,1,1,1,0
+access_motel_booking_guest_line_housekeeping,motel.booking.guest.line housekeeping,model_motel_booking_guest_line,motel_security.group_motel_housekeeping,1,0,0,0
+access_motel_booking_guest_line_accountant,motel.booking.guest.line accountant,model_motel_booking_guest_line,motel_security.group_motel_accountant,1,0,0,0
+
+access_motel_booking_service_line_admin,motel.booking.service.line admin,model_motel_booking_service_line,motel_security.group_motel_admin,1,1,1,0
+access_motel_booking_service_line_receptionist,motel.booking.service.line receptionist,model_motel_booking_service_line,motel_security.group_motel_receptionist,1,1,1,0
+access_motel_booking_service_line_housekeeping,motel.booking.service.line housekeeping,model_motel_booking_service_line,motel_security.group_motel_housekeeping,1,0,0,0
+access_motel_booking_service_line_accountant,motel.booking.service.line accountant,model_motel_booking_service_line,motel_security.group_motel_accountant,1,1,1,0

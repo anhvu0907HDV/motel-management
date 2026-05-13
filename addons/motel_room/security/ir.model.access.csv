@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_motel_room_type_admin,motel.room.type admin,model_motel_room_type,motel_security.group_motel_admin,1,1,1,0
+access_motel_room_type_receptionist,motel.room.type receptionist,model_motel_room_type,motel_security.group_motel_receptionist,1,1,1,0
+access_motel_room_type_housekeeping,motel.room.type housekeeping,model_motel_room_type,motel_security.group_motel_housekeeping,1,0,0,0
+access_motel_room_type_accountant,motel.room.type accountant,model_motel_room_type,motel_security.group_motel_accountant,1,0,0,0
+
+access_motel_room_admin,motel.room admin,model_motel_room,motel_security.group_motel_admin,1,1,1,0
+access_motel_room_receptionist,motel.room receptionist,model_motel_room,motel_security.group_motel_receptionist,1,1,1,0
+access_motel_room_housekeeping,motel.room housekeeping,model_motel_room,motel_security.group_motel_housekeeping,1,1,1,0
+access_motel_room_accountant,motel.room accountant,model_motel_room,motel_security.group_motel_accountant,1,0,0,0
+
+access_motel_room_status_log_admin,motel.room.status.log admin,model_motel_room_status_log,motel_security.group_motel_admin,1,0,0,0
+access_motel_room_status_log_receptionist,motel.room.status.log receptionist,model_motel_room_status_log,motel_security.group_motel_receptionist,1,0,0,0
+access_motel_room_status_log_housekeeping,motel.room.status.log housekeeping,model_motel_room_status_log,motel_security.group_motel_housekeeping,1,0,0,0
+access_motel_room_status_log_accountant,motel.room.status.log accountant,model_motel_room_status_log,motel_security.group_motel_accountant,1,0,0,0

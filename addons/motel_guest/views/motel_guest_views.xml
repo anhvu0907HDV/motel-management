@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_motel_guest_tree" model="ir.ui.view">
+        <field name="name">motel.guest.tree</field>
+        <field name="model">motel.guest</field>
+        <field name="arch" type="xml">
+            <tree string="Guests">
+                <field name="full_name"/>
+                <field name="identity_number"/>
+                <field name="phone"/>
+                <field name="dob"/>
+                <field name="gender"/>
+                <field name="is_blacklisted"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_motel_guest_form" model="ir.ui.view">
+        <field name="name">motel.guest.form</field>
+        <field name="model">motel.guest</field>
+        <field name="arch" type="xml">
+            <form string="Guest">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="full_name" placeholder="Guest name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="identity_number"/>
+                            <field name="dob"/>
+                            <field name="gender"/>
+                            <field name="nationality"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="issue_date"/>
+                            <field name="issue_place"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Address">
+                            <field name="address" placeholder="Address..."/>
+                        </page>
+                        <page string="CCCD Images" groups="motel_security.group_motel_admin,motel_security.group_motel_receptionist">
+                            <group>
+                                <field name="portrait" widget="image" class="oe_avatar"/>
+                                <field name="cccd_front" widget="image"/>
+                                <field name="cccd_back" widget="image"/>
+                            </group>
+                        </page>
+                        <page string="OCR" groups="motel_security.group_motel_admin,motel_security.group_motel_receptionist">
+                            <group>
+                                <field name="ocr_verified"/>
+                                <field name="ocr_confidence"/>
+                            </group>
+                            <field name="ocr_text" placeholder="Raw OCR text..."/>
+                        </page>
+                        <page string="Blacklist">
+                            <group>
+                                <field name="is_blacklisted"/>
+                            </group>
+                            <field name="blacklist_reason" placeholder="Reason..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_motel_guest" model="ir.actions.act_window">
+        <field name="name">Guests</field>
+        <field name="res_model">motel.guest</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
+

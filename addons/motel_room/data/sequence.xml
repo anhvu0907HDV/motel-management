@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_motel_room_type" model="ir.sequence">
+        <field name="name">Room Type</field>
+        <field name="code">motel.room.type</field>
+        <field name="prefix">RT</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_motel_room" model="ir.sequence">
+        <field name="name">Room</field>
+        <field name="code">motel.room</field>
+        <field name="prefix">R</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

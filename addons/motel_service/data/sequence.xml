@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_motel_service" model="ir.sequence">
+        <field name="name">Service</field>
+        <field name="code">motel.service</field>
+        <field name="prefix">S</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>
+

@@ -41,7 +41,7 @@ services:
 
     volumes:
       # custom addons
-      - ./custom_addons:/mnt/extra-addons
+      - ./addons:/mnt/extra-addons
 
       # config
       - ./config:/etc/odoo

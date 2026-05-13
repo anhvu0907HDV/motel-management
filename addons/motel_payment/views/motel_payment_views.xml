@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_motel_payment_tree" model="ir.ui.view">
+        <field name="name">motel.payment.tree</field>
+        <field name="model">motel.payment</field>
+        <field name="arch" type="xml">
+            <tree string="Payments">
+                <field name="payment_time"/>
+                <field name="booking_id"/>
+                <field name="amount"/>
+                <field name="payment_method"/>
+                <field name="state"/>
+                <field name="reference"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_motel_payment_form" model="ir.ui.view">
+        <field name="name">motel.payment.form</field>
+        <field name="model">motel.payment</field>
+        <field name="arch" type="xml">
+            <form string="Payment">
+                <header>
+                    <button name="action_cancel" type="object" string="Cancel" class="btn-secondary" invisible="state == 'cancelled'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="posted,cancelled"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="booking_id"/>
+                            <field name="payment_time"/>
+                            <field name="payment_method"/>
+                            <field name="reference"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="currency_id" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_motel_payment" model="ir.actions.act_window">
+        <field name="name">Payments</field>
+        <field name="res_model">motel.payment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

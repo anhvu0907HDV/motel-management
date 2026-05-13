@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_motel_room_kanban_inherit_booking" model="ir.ui.view">
+        <field name="name">motel.room.kanban.inherit.booking</field>
+        <field name="model">motel.room</field>
+        <field name="inherit_id" ref="motel_room.view_motel_room_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="inside">
+                <field name="current_primary_guest_id"/>
+                <field name="current_checkin_time"/>
+            </xpath>
+            <xpath expr="//div[@class='text-muted']" position="inside">
+                <t t-if="record.current_primary_guest_id.raw_value">
+                    <div>
+                        <span t-esc="record.current_primary_guest_id.value"/>
+                        <t t-if="record.current_checkin_time.raw_value">
+                            <span class="text-muted"> • </span>
+                            <span t-esc="record.current_checkin_time.value"/>
+                        </t>
+                    </div>
+                </t>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

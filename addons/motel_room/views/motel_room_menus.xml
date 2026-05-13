@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_motel_room_type" model="ir.actions.act_window">
+        <field name="name">Room Types</field>
+        <field name="res_model">motel.room.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_motel_room_root" name="Rooms" parent="motel_base.menu_motel_root" sequence="10"/>
+    <menuitem id="menu_motel_room" name="Rooms" parent="menu_motel_room_root" action="action_motel_room" sequence="10"/>
+    <menuitem id="menu_motel_room_type" name="Room Types" parent="menu_motel_room_root" action="action_motel_room_type" sequence="20"/>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_motel_report_dashboard_admin,motel.report.dashboard admin,model_motel_report_dashboard,motel_security.group_motel_admin,1,1,1,0
+access_motel_report_dashboard_receptionist,motel.report.dashboard receptionist,model_motel_report_dashboard,motel_security.group_motel_receptionist,1,0,0,0
+access_motel_report_dashboard_housekeeping,motel.report.dashboard housekeeping,model_motel_report_dashboard,motel_security.group_motel_housekeeping,1,0,0,0
+access_motel_report_dashboard_accountant,motel.report.dashboard accountant,model_motel_report_dashboard,motel_security.group_motel_accountant,1,0,0,0

@@ -1,0 +1,23 @@
+.motel_room_card {
+  border-left: 6px solid transparent;
+}
+
+.motel_room_status_available {
+  border-left-color: #2ecc71;
+}
+
+.motel_room_status_occupied {
+  border-left-color: #e74c3c;
+}
+
+.motel_room_status_reserved {
+  border-left-color: #f39c12;
+}
+
+.motel_room_status_cleaning {
+  border-left-color: #3498db;
+}
+
+.motel_room_status_maintenance {
+  border-left-color: #7f8c8d;
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_motel_room_type_tree" model="ir.ui.view">
+        <field name="name">motel.room.type.tree</field>
+        <field name="model">motel.room.type</field>
+        <field name="arch" type="xml">
+            <tree string="Room Types">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="capacity"/>
+                <field name="default_price_hour"/>
+                <field name="default_price_night"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_motel_room_type_form" model="ir.ui.view">
+        <field name="name">motel.room.type.form</field>
+        <field name="model">motel.room.type</field>
+        <field name="arch" type="xml">
+            <form string="Room Type">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Room Type"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="capacity"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="default_price_hour"/>
+                            <field name="default_price_night"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" placeholder="Notes..."/>
+                        </page>
+                        <page string="Rooms">
+                            <field name="room_ids" context="{'default_room_type_id': active_id}" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="floor"/>
+                                    <field name="status"/>
+                                    <field name="active"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

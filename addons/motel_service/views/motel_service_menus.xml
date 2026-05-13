@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_motel_service_root" name="Services" parent="motel_base.menu_motel_root" sequence="40"/>
+    <menuitem id="menu_motel_service" name="Services" parent="menu_motel_service_root" action="action_motel_service" sequence="10"/>
+</odoo>
+

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_motel_payment_admin,motel.payment admin,model_motel_payment,motel_security.group_motel_admin,1,1,1,0
+access_motel_payment_receptionist,motel.payment receptionist,model_motel_payment,motel_security.group_motel_receptionist,1,1,1,0
+access_motel_payment_housekeeping,motel.payment housekeeping,model_motel_payment,motel_security.group_motel_housekeeping,1,0,0,0
+access_motel_payment_accountant,motel.payment accountant,model_motel_payment,motel_security.group_motel_accountant,1,1,1,0

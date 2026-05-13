@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_motel_root" name="Motel" sequence="10" groups="base.group_user"/>
+</odoo>
