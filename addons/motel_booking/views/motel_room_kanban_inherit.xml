@@ -11,32 +11,11 @@
                 <field name="current_primary_guest_phone"/>
                 <field name="current_primary_guest_identity_number"/>
                 <field name="current_checkin_time"/>
+                <field name="next_booking_id"/>
+                <field name="next_booking_checkin_time"/>
             </xpath>
 
             <xpath expr="//div[@class='motel_room_extra']" position="inside">
-                <div class="motel_room_quick_actions">
-                    <a href="#"
-                       class="btn btn-sm btn-outline-success oe_kanban_action oe_kanban_action_a"
-                       t-if="!record.current_booking_id.raw_value &amp;&amp; record.status.raw_value != 'available'"
-                       t-on-click.stop.prevent="() => __comp__.motelQuickSetStatus('available')"
-                       title="Set status to Available">
-                        Available
-                    </a>
-                    <a href="#"
-                       class="btn btn-sm btn-outline-primary oe_kanban_action oe_kanban_action_a"
-                       t-if="!record.current_booking_id.raw_value &amp;&amp; record.status.raw_value != 'cleaning'"
-                       t-on-click.stop.prevent="() => __comp__.motelQuickSetStatus('cleaning')"
-                       title="Set status to Cleaning">
-                        Cleaning
-                    </a>
-                    <a href="#"
-                       class="btn btn-sm btn-outline-secondary oe_kanban_action oe_kanban_action_a"
-                       t-if="!record.current_booking_id.raw_value &amp;&amp; record.status.raw_value != 'maintenance'"
-                       t-on-click.stop.prevent="() => __comp__.motelQuickSetStatus('maintenance')"
-                       title="Set status to Maintenance">
-                        Maintenance
-                    </a>
-                </div>
                 <t t-if="record.current_primary_guest_id.raw_value">
                     <div class="motel_room_guest">
                         <div class="motel_room_guest_name">
@@ -60,6 +39,35 @@
                         </div>
                     </div>
                 </t>
+                <t t-if="!record.current_booking_id.raw_value &amp;&amp; record.next_booking_id.raw_value">
+                    <div class="motel_room_future_booking text-muted">
+                        <i class="fa fa-calendar me-1"/>
+                        <span t-esc="record.next_booking_id.value"/>
+                        <t t-if="record.next_booking_checkin_time.raw_value">
+                            <span class="ms-1">•</span>
+                            <span class="ms-1" t-esc="record.next_booking_checkin_time.value"/>
+                        </t>
+                    </div>
+                </t>
+            </xpath>
+
+            <xpath expr="//div[@class='motel_room_badge']" position="after">
+                <a href="#"
+                   type="object"
+                   name="action_open_booking_form"
+                   class="motel_room_book_btn oe_kanban_action oe_kanban_action_a"
+                   t-if="!record.current_booking_id.raw_value &amp;&amp; record.status.raw_value === 'available'"
+                   title="Create booking">
+                    <i class="fa fa-calendar-plus-o"/>
+                </a>
+                <a href="#"
+                   type="object"
+                   name="action_cycle_status"
+                   class="motel_room_cycle_btn oe_kanban_action oe_kanban_action_a"
+                   t-if="!record.current_booking_id.raw_value &amp;&amp; (record.status.raw_value === 'available' || record.status.raw_value === 'cleaning' || record.status.raw_value === 'maintenance')"
+                   title="Next status">
+                    <i class="fa fa-check"/>
+                </a>
             </xpath>
         </field>
     </record>

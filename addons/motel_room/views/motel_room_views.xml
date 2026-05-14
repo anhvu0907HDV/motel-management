@@ -63,7 +63,7 @@
         <field name="name">motel.room.kanban</field>
         <field name="model">motel.room</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_small_column">
+            <kanban class="o_kanban_small_column motel_room_kanban_view">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="status"/>
@@ -123,4 +123,3 @@
         </field>
     </record>
 </odoo>
-

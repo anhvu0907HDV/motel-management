@@ -60,3 +60,17 @@ class MotelPayment(models.Model):
     def action_cancel(self):
         for rec in self:
             rec.state = "cancelled"
+
+    def name_get(self):
+        selection_map = dict(self._fields["payment_method"].selection)
+        res = []
+        for rec in self:
+            booking = rec.booking_id.booking_code if rec.booking_id else ""
+            method = selection_map.get(rec.payment_method, rec.payment_method)
+            amount = rec.amount
+            currency = rec.currency_id.name if rec.currency_id else ""
+            ref = rec.reference or ""
+            parts = [p for p in [booking, method, f"{amount:g} {currency}".strip(), ref] if p]
+            name = " / ".join(parts) if parts else f"Payment {rec.id}"
+            res.append((rec.id, name))
+        return res

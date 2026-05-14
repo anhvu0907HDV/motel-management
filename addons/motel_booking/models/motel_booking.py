@@ -131,7 +131,11 @@ class MotelBooking(models.Model):
                 rec.room_price_hour_snapshot = rec.room_id.room_type_id.default_price_hour
                 rec.room_price_night_snapshot = rec.room_id.room_type_id.default_price_night
             rec.state = "confirmed"
-            rec.room_id.status = "reserved"
+            # Do not lock the room as "reserved" too early for far-future bookings.
+            # Room status should reflect current operational status; future reservations are shown separately.
+            now = fields.Datetime.now()
+            if rec.checkin_time and rec.checkin_time <= now and rec.room_id.status == "available":
+                rec.room_id.status = "reserved"
 
     def action_check_in(self):
         for rec in self:

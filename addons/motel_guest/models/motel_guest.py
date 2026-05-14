@@ -6,6 +6,7 @@ class MotelGuest(models.Model):
     _name = "motel.guest"
     _description = "Motel Guest"
     _inherit = ["mail.thread", "mail.activity.mixin", "motel.active.mixin"]
+    _rec_name = "full_name"
 
     _sql_constraints = [
         ("motel_guest_identity_number_uniq", "unique(identity_number)", "Identity number must be unique."),
@@ -51,7 +52,9 @@ class MotelGuest(models.Model):
     def name_get(self):
         res = []
         for rec in self:
-            name = rec.full_name or ""
+            name = (rec.full_name or "").strip()
+            if not name:
+                name = f"Guest {rec.id}"
             if rec.identity_number:
                 name = f"{name} ({rec.identity_number})"
             res.append((rec.id, name))

@@ -1,13 +1,86 @@
 .motel_room_card {
-  border-left: 6px solid transparent;
+  --motel-accent: #2ecc71;
+  border-left: 6px solid var(--motel-accent);
   border-radius: 14px;
   overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease;
+  position: relative;
+}
+
+.motel_room_kanban_view .o_kanban_record {
+  width: 340px;
+  max-width: 100%;
+}
+
+.motel_room_card .o_kanban_record_top {
+  padding: 12px 12px 10px 12px;
+}
+
+.motel_room_card:hover {
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.10);
+  transform: translateY(-2px);
+  border-color: rgba(0, 0, 0, 0.10);
+}
+
+.motel_room_cycle_btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.motel_room_cycle_btn,
+.motel_room_book_btn {
+  z-index: 2;
+}
+
+.motel_room_book_btn {
+  position: absolute;
+  top: 10px;
+  right: 46px;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(46, 204, 113, 0.14);
+  color: #1e7f4e;
+}
+
+.motel_room_book_btn:hover {
+  background: rgba(46, 204, 113, 0.22);
+  color: #17643d;
+}
+
+.motel_room_book_btn i {
+  font-size: 13px;
+}
+
+.motel_room_cycle_btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.motel_room_cycle_btn i {
+  font-size: 13px;
 }
 
 .motel_room_header {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding-right: 76px;
 }
 
 .motel_room_icon {
@@ -17,12 +90,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.06);
+  background: color-mix(in srgb, var(--motel-accent) 12%, transparent);
   flex: 0 0 auto;
 }
 
 .motel_room_icon i {
   font-size: 18px;
+  color: color-mix(in srgb, var(--motel-accent) 70%, #000);
 }
 
 .motel_room_title {
@@ -43,26 +117,32 @@
   font-size: 12px;
   line-height: 1.2;
   margin-top: 2px;
+  white-space: normal;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .motel_room_badge {
   flex: 0 0 auto;
+  margin-right: 8px;
 }
 
 .motel_room_status_badge {
   font-weight: 600;
+  border: 1px solid color-mix(in srgb, var(--motel-accent) 18%, transparent);
+  background-color: color-mix(in srgb, var(--motel-accent) 14%, transparent);
+  color: color-mix(in srgb, var(--motel-accent) 55%, #000);
 }
 
 .motel_room_extra {
   margin-top: 8px;
+  padding-right: 8px;
 }
 
-.motel_room_quick_actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 2px;
-  margin-bottom: 8px;
+.motel_room_guest {
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .motel_room_guest_name {
@@ -76,47 +156,30 @@
   margin-top: 2px;
 }
 
+.motel_room_future_booking {
+  font-size: 12px;
+  line-height: 1.2;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.10);
+}
+
 .motel_room_status_available {
-  border-left-color: #2ecc71;
+  --motel-accent: #2ecc71;
 }
 
 .motel_room_status_occupied {
-  border-left-color: #e74c3c;
+  --motel-accent: #e74c3c;
 }
 
 .motel_room_status_reserved {
-  border-left-color: #f39c12;
+  --motel-accent: #f39c12;
 }
 
 .motel_room_status_cleaning {
-  border-left-color: #3498db;
+  --motel-accent: #3498db;
 }
 
 .motel_room_status_maintenance {
-  border-left-color: #7f8c8d;
-}
-
-.motel_room_status_badge_available {
-  background-color: rgba(46, 204, 113, 0.15);
-  color: #1e7f4e;
-}
-
-.motel_room_status_badge_occupied {
-  background-color: rgba(231, 76, 60, 0.15);
-  color: #a82318;
-}
-
-.motel_room_status_badge_reserved {
-  background-color: rgba(243, 156, 18, 0.18);
-  color: #a15f00;
-}
-
-.motel_room_status_badge_cleaning {
-  background-color: rgba(52, 152, 219, 0.15);
-  color: #1f6ea0;
-}
-
-.motel_room_status_badge_maintenance {
-  background-color: rgba(127, 140, 141, 0.18);
-  color: #4a5455;
+  --motel-accent: #7f8c8d;
 }
