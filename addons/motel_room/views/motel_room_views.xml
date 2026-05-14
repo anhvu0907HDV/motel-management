@@ -73,27 +73,37 @@
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_card oe_kanban_global_click motel_room_card motel_room_status_#{record.status.raw_value}">
                             <div class="o_kanban_record_top">
-                                <div class="o_kanban_record_headings">
-                                    <strong class="o_kanban_record_title">
-                                        <t t-if="record.code.raw_value">
-                                            <span t-esc="record.code.value"/>
-                                        </t>
-                                        <t t-else="">
-                                            <span t-esc="record.name.value"/>
-                                        </t>
-                                    </strong>
-                                    <div class="text-muted">
-                                        <span t-esc="record.room_type_id.value"/>
-                                        <t t-if="record.floor.raw_value !== false">
-                                            <span> • Floor </span><span t-esc="record.floor.value"/>
-                                        </t>
+                                <div class="motel_room_header">
+                                    <div class="motel_room_icon" aria-label="Room">
+                                        <i class="fa fa-bed"/>
+                                    </div>
+
+                                    <div class="motel_room_title">
+                                        <div class="motel_room_code">
+                                            <t t-if="record.code.raw_value">
+                                                <span t-esc="record.code.value"/>
+                                            </t>
+                                            <t t-else="">
+                                                <span t-esc="record.name.value"/>
+                                            </t>
+                                        </div>
+                                        <div class="motel_room_meta text-muted">
+                                            <span t-esc="record.room_type_id.value"/>
+                                            <t t-if="record.floor.raw_value !== false">
+                                                <span> • Floor </span>
+                                                <span t-esc="record.floor.value"/>
+                                            </t>
+                                        </div>
+                                    </div>
+
+                                    <div class="motel_room_badge">
+                                        <span t-attf-class="badge motel_room_status_badge motel_room_status_badge_#{record.status.raw_value}">
+                                            <field name="status"/>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="o_kanban_record_badges">
-                                    <span class="badge text-bg-secondary">
-                                        <field name="status"/>
-                                    </span>
-                                </div>
+
+                                <div class="motel_room_extra"/>
                             </div>
                         </div>
                     </t>
@@ -113,3 +123,4 @@
         </field>
     </record>
 </odoo>
+

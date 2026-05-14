@@ -32,3 +32,27 @@ class MotelActiveMixin(models.AbstractModel):
     _description = "Motel Active Mixin"
 
     active = fields.Boolean(default=True, index=True)
+
+
+class MotelNotificationMixin(models.AbstractModel):
+    _name = "motel.notification.mixin"
+    _description = "Motel Notification Mixin"
+
+    def _motel_display_notification(
+        self,
+        *,
+        title: str,
+        message: str,
+        notif_type: str = "success",
+        sticky: bool = False,
+        reload: bool = True,
+    ):
+        params = {
+            "title": title,
+            "message": message,
+            "type": notif_type,
+            "sticky": sticky,
+        }
+        if reload:
+            params["next"] = {"type": "ir.actions.client", "tag": "reload"}
+        return {"type": "ir.actions.client", "tag": "display_notification", "params": params}

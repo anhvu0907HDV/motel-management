@@ -15,13 +15,24 @@ class MotelBooking(models.Model):
         for rec in self:
             rec.paid_amount = sum(rec.payment_ids.filtered(lambda p: p.state == "posted").mapped("amount"))
 
-    @api.depends("total_amount", "paid_amount")
+    @api.depends("total_amount", "service_total_amount", "paid_amount")
     def _compute_remaining_balance(self):
         for rec in self:
-            rec.remaining_balance = (rec.total_amount or 0.0) - (rec.paid_amount or 0.0)
+            rec.remaining_balance = (rec.total_amount or 0.0) + (rec.service_total_amount or 0.0) - (rec.paid_amount or 0.0)
 
     def action_check_out(self):
         for rec in self:
             if rec.remaining_balance and rec.remaining_balance > 0:
-                raise ValidationError("Checkout requires remaining balance = 0.")
+                return {
+                    "type": "ir.actions.act_window",
+                    "name": "Register Payment",
+                    "res_model": "motel.payment",
+                    "view_mode": "form",
+                    "target": "new",
+                    "context": {
+                        "default_booking_id": rec.id,
+                        "default_amount": rec.remaining_balance,
+                        "default_payment_method": "cash",
+                    },
+                }
         return super().action_check_out()

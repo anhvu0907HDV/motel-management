@@ -15,6 +15,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/motel_payment_views.xml",
+        "views/res_company_qr_views.xml",
         "views/motel_payment_menus.xml",
     ],
     "application": False,

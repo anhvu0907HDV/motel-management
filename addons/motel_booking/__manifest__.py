@@ -13,6 +13,11 @@
         "motel_service",
         "mail",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "motel_booking/static/src/js/room_kanban_quick_actions.js",
+        ],
+    },
     "data": [
         "security/ir.model.access.csv",
         "data/sequence.xml",

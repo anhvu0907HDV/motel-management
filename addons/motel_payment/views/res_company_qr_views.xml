@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_inherit_motel_payment_qr" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.motel_payment.qr</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Payment QR" groups="base.group_system">
+                    <group>
+                        <group string="Bank Transfer">
+                            <field name="qr_bank_image" widget="image" options="{'preview_image': 'qr_bank_image'}"/>
+                        </group>
+                        <group string="MoMo">
+                            <field name="qr_momo_image" widget="image" options="{'preview_image': 'qr_momo_image'}"/>
+                        </group>
+                        <group string="VNPay">
+                            <field name="qr_vnpay_image" widget="image" options="{'preview_image': 'qr_vnpay_image'}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

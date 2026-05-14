@@ -1,5 +1,79 @@
 .motel_room_card {
   border-left: 6px solid transparent;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.motel_room_header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.motel_room_icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.06);
+  flex: 0 0 auto;
+}
+
+.motel_room_icon i {
+  font-size: 18px;
+}
+
+.motel_room_title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.motel_room_code {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.motel_room_meta {
+  font-size: 12px;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.motel_room_badge {
+  flex: 0 0 auto;
+}
+
+.motel_room_status_badge {
+  font-weight: 600;
+}
+
+.motel_room_extra {
+  margin-top: 8px;
+}
+
+.motel_room_quick_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+
+.motel_room_guest_name {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.motel_room_guest_meta {
+  font-size: 12px;
+  line-height: 1.2;
+  margin-top: 2px;
 }
 
 .motel_room_status_available {
@@ -20,4 +94,29 @@
 
 .motel_room_status_maintenance {
   border-left-color: #7f8c8d;
+}
+
+.motel_room_status_badge_available {
+  background-color: rgba(46, 204, 113, 0.15);
+  color: #1e7f4e;
+}
+
+.motel_room_status_badge_occupied {
+  background-color: rgba(231, 76, 60, 0.15);
+  color: #a82318;
+}
+
+.motel_room_status_badge_reserved {
+  background-color: rgba(243, 156, 18, 0.18);
+  color: #a15f00;
+}
+
+.motel_room_status_badge_cleaning {
+  background-color: rgba(52, 152, 219, 0.15);
+  color: #1f6ea0;
+}
+
+.motel_room_status_badge_maintenance {
+  background-color: rgba(127, 140, 141, 0.18);
+  color: #4a5455;
 }

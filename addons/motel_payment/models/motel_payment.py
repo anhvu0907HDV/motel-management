@@ -36,6 +36,21 @@ class MotelPayment(models.Model):
         tracking=True,
     )
 
+    qr_image = fields.Binary(compute="_compute_qr_image", attachment=False)
+
+    @api.depends("payment_method")
+    def _compute_qr_image(self):
+        for rec in self:
+            company = rec.env.company
+            if rec.payment_method == "bank":
+                rec.qr_image = company.qr_bank_image or False
+            elif rec.payment_method == "momo":
+                rec.qr_image = company.qr_momo_image or False
+            elif rec.payment_method == "vnpay":
+                rec.qr_image = company.qr_vnpay_image or False
+            else:
+                rec.qr_image = False
+
     @api.constrains("amount")
     def _check_amount(self):
         for rec in self:

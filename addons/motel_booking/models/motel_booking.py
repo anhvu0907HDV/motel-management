@@ -42,6 +42,10 @@ class MotelBooking(models.Model):
     )
 
     total_amount = fields.Monetary(currency_field="currency_id", tracking=True)
+    service_total_amount = fields.Monetary(
+        compute="_compute_service_total_amount",
+        currency_field="currency_id",
+    )
     deposit_amount = fields.Monetary(currency_field="currency_id", tracking=True)
     note = fields.Text()
 
@@ -50,6 +54,11 @@ class MotelBooking(models.Model):
 
     guest_line_ids = fields.One2many("motel.booking.guest.line", "booking_id", string="Guests")
     service_line_ids = fields.One2many("motel.booking.service.line", "booking_id", string="Services")
+
+    @api.depends("service_line_ids.subtotal")
+    def _compute_service_total_amount(self):
+        for rec in self:
+            rec.service_total_amount = sum(rec.service_line_ids.mapped("subtotal"))
 
     def _next_booking_code(self) -> str:
         return self.env["ir.sequence"].next_by_code("motel.booking") or "New"
@@ -128,6 +137,9 @@ class MotelBooking(models.Model):
         for rec in self:
             if rec.state not in ("confirmed",):
                 raise ValidationError("Only confirmed bookings can be checked in.")
+            primaries = rec.guest_line_ids.filtered("is_primary")
+            if not primaries and len(rec.guest_line_ids) == 1:
+                rec.guest_line_ids.is_primary = True
             rec._ensure_primary_guest()
             rec.state = "checked_in"
             rec.room_id.status = "occupied"
